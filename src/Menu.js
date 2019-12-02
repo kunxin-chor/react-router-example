@@ -28,8 +28,10 @@ export default function Menu()
   <ul id='menu'>
      <li><Link to='/'>Home</Link></li>
      <li><Link to='/about'>About</Link></li>
-     <li><a>Catalog</a></li>
-     <li><a>Contact Us</a></li>
+     <li><Link to='/change-settings'>Change Settings</Link></li>
+     <li><Link to='/view-settings'>View Settings</Link></li>
+     <li><Link to='/catalog'>Catalog</Link></li>
+     <li><Link to='/contact-us'>Contact Us</Link></li>
   </ul>
   );
 }

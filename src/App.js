@@ -4,6 +4,8 @@ import Menu from './Menu.js'
 
 import Home from './pages/Home.js'
 import About from './pages/About.js'
+import ChangeSettings from './pages/ChangeSettings.js'
+import ViewSettings from './pages/ViewSettings.js'
 
 // These stuff are for the router
 import {
@@ -14,18 +16,53 @@ import {
 } from "react-router-dom";
 
 
-export default function App(){
+export default class App extends React.Component {
   
-  return (
+  state = {
+    fontColor: "",
+    fontSize:0
+  }
+  
+  // updateSettings is expecting an object
+  // with the keys fontColor and fontSize
+  updateSettings = (settings) => {
+    this.setState({
+      fontColor : settings.fontColor,
+      fontSize: settings.fontSize,
+      
+    })
+    
+    /* shortcut works for any number of settings*/
+    /*
+    this.setState({
+      ...this.state,
+      ...settings
+    })
+    */
+    
+  }
+  
+  render() {
+    return (
     <div>
       <Router>
         <Menu/>
         <Switch>
          
-     
-          
+
           <Route path='/about'>
             <About/>
+          </Route>
+          
+          <Route path='/change-settings'>
+            <ChangeSettings updateSettings={this.updateSettings}/>
+          </Route>
+          
+          <Route path='/view-settings'>
+            <ViewSettings settings={{
+              fontColor: this.state.fontColor,
+              fontSize: this.state.fontSize
+            }}/>
           </Route>
           
           <Route path='/'>
@@ -37,6 +74,9 @@ export default function App(){
       </Router>
     </div>  
     )
+  
+  }
+  
   
 }
 
